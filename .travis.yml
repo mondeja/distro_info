@@ -1,0 +1,9 @@
+language: python
+os: linux
+dist: focal
+cache: false
+matrix:
+  include:
+    - python: 3.9
+      name: Update 'distro-info-data' 
+      script: 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then git checkout master && python scripts/update-package.py || (bash scripts/travis-push.sh && python setup.py upload --username="mondeja" --password="$PYPI_PASSWORD" > /dev/null 2>&1); fi'
