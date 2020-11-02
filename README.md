@@ -12,7 +12,7 @@ pip install debian-distro-info
 
 ## Usage
 
-```bash
+```python
 from distro_info import DebianDistroInfo, UbuntuDistroInfo
 
 di = UbuntuDistroInfo()

@@ -68,7 +68,7 @@ def update_csvs(downloaded_directory_name):
     filenames = ["debian.csv", "ubuntu.csv"]
     for filename in filenames:
         source_filepath = os.path.join(downloaded_directory_name, filename)
-        target_filepath = os.path.join("distro-info", filename)
+        target_filepath = os.path.join("distro_info", filename)
         
         source_hash = hashfile(source_filepath)
         target_hash = hashfile(target_filepath)
