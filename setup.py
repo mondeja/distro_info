@@ -7,10 +7,7 @@ from shutil import rmtree
 from setuptools import setup, Command
 
 # distro-info version + distro-info-data version
-VERSION = '0.24.0.45'
-PACKAGES = []
-PY_MODULES = ["distro_info"]
-SCRIPTS = ["debian-distro-info", "ubuntu-distro-info"]
+VERSION = '0.24.0.45a5'
 
 
 class UploadCommand(Command):
@@ -39,7 +36,7 @@ class UploadCommand(Command):
     def run(self):
         try:
             self.status("Removing previous builds…")
-            rmtree(os.path.join(HERE, "dist"))
+            rmtree(os.path.join(os.path.dirname(__file__), "dist"))
         except OSError:
             pass
         self.status("Building Source and Wheel (universal) distribution…")
@@ -58,16 +55,20 @@ class UploadCommand(Command):
 
 
 setup(
-    name="distro_info",
+    name="debian-distro-info",
     version=VERSION,
-    py_modules=PY_MODULES,
-    packages=PACKAGES,
-    test_suite="distro_info_test",
+    packages=['distro_info'],
     entry_points={
         'console_scripts': [
-            'debian-distro-info = debian_distro_info:main',
-            'ubuntu-distro-info = ubuntu_distro_info:main',
+            'debian-distro-info = distro_info.debian_distro_info:main',
+            'ubuntu-distro-info = distro_info.ubuntu_distro_info:main',
         ],
     },
-    package_data={"distro-info": ["debian.csv", "ubuntu.csv"]},
+    package_data={"distro_info": ["distro_info/debian.csv",
+                                  "distro_info/ubuntu.csv"]},
+    include_package_data=True,
+    cmdclass={
+        'upload': UploadCommand,
+    },
+    zip_safe=False,
 )

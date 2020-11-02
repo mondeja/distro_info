@@ -116,7 +116,8 @@ def main():
         filepath = download_distro_info_data(version)
         downloaded_directory_name = unzip_distro_info_data(filepath, version)
         file_updated = update_csvs(downloaded_directory_name)
-        update_setup_version(version)
+        if file_updated:
+            update_setup_version(version)
     except Exception as exception:
         err = exception
     finally:

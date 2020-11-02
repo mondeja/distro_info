@@ -7,5 +7,14 @@ Python implementation mirror of [Debian distro-info utility][distro-info-link].
 ## Installation
 
 ```bash
-pip install distro_info
+pip install debian-distro-info
+```
+
+## Usage
+
+```bash
+from distro_info import DebianDistroInfo, UbuntuDistroInfo
+
+di = UbuntuDistroInfo()
+print(di._releases)
 ```

@@ -41,7 +41,7 @@ def convert_date(string):
 
 def _get_data_dir():
     """Get the data directory based on the module location."""
-    return os.path.abspath(os.path.join(os.path.dirname(__file__), "distro-info"))
+    return os.path.abspath(os.path.dirname(__file__))
 
 
 class DistroDataOutdated(Exception):
